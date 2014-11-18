@@ -44,9 +44,10 @@ void draw() {
   switch(status) {
 
   case GAME_START:
-    /*---------Print Text-------------*/
     
-    /*--------------------------------*/
+    printText("GALIXIAN", 240, 60); 
+    printText("Press ENTER to Start", 280, 20);
+    
     break;
 
   case GAME_PLAYING:
@@ -70,23 +71,26 @@ void draw() {
     break;
 
   case GAME_PAUSE:
-    /*---------Print Text-------------*/
-
-    /*--------------------------------*/
+    
+    printText("PAUSE", 240, 40);
+    printText("Press ENTER to Resume", 280, 20);
+    
     break;
 
   case GAME_WIN:
-    /*---------Print Text-------------*/
-
-    /*--------------------------------*/
+    
+    printText("WINNER", 300, 40);
+    printText("SCORE:", 340, 20);
+    
     winAnimate();
     break;
 
   case GAME_LOSE:
     loseAnimate();
-    /*---------Print Text-------------*/
-
-    /*--------------------------------*/
+    
+    printText("BOOOM", 240, 40);
+    printText("You are dead!!", 280, 20);
+    
     break;
   }
 }
@@ -113,9 +117,9 @@ void keyPressed() {
   statusCtrl();
 }
 
-/*---------Make Alien Function-------------*/
+
 void alienMaker() {
-  for(float i=0; i<53; i++){
+  for(int i=0; i<53; i++){
   aList[i]= new Alien(50+(i%12)*40, 50+(i/12)*50);
   }
 }
@@ -123,8 +127,8 @@ void alienMaker() {
 void drawLife() {
   fill(230, 74, 96);
   text("LIFE:", 36, 455);
-  /*---------Draw Ship Life---------*/
-  for(float i=0; i<3; i++){
+  
+  for(int i=0; i<3; i++){
     ellipse(78+i*25, 459, 15, 15);
   }
 }
@@ -202,8 +206,17 @@ void checkAlienDead() {
     for (int j=0; j<aList.length-1; j++) {
       Alien alien = aList[j];
       if (bullet != null && alien != null && !bullet.gone && !alien.die // Check Array isn't empty and bullet / alien still exist
-      /*------------Hit detect-------------*/        ) {
+      /*------------Hit detect-------------*/ 
+           && bList[i].bX <=aList[j].aX + aList[j].aSize 
+           && bList[i].bX >= aList[j].aX - aList[j].aSize 
+           && bList[i].bY <=aList[j].aY + aList[j].aSize 
+           && bList[i].bY >= aList[j].aY - aList[j].aSize ) {
         /*-------do something------*/
+       
+        removeAlien( aList[j] );   
+        removeBullet( bList[i] );
+
+
       }
     }
   }
@@ -262,7 +275,12 @@ void loseAnimate() {
 
 
 /*---------Print Text Function-------------*/
-
+void printText(String text, float textY, int size){
+  fill(95,194,226);
+  textSize(size);
+  textAlign(CENTER);
+  text(text, width/2, textY);
+}
 
 void removeBullet(Bullet obj) {
   obj.gone = true;
@@ -322,7 +340,13 @@ void statusCtrl() {
       break;
 
       /*-----------add things here--------*/
-
+    case GAME_PLAYING:
+      status = GAME_PAUSE;
+      break;
+      
+    case GAME_PAUSE:
+      status = GAME_PLAYING;
+      break;
     }
   }
 }
@@ -348,4 +372,3 @@ void cheatKeys() {
     }
   }
 }
-
