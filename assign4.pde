@@ -45,7 +45,8 @@ void draw() {
 
   case GAME_START:
     /*---------Print Text-------------*/
-    text("press enter", 320, 240); // replace this with printText
+    printText("GALIXIAN", 240, 60); 
+    printText("Press ENTER to Start", 280, 20);
     /*--------------------------------*/
     break;
 
