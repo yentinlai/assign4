@@ -275,11 +275,11 @@ void loseAnimate() {
 
 
 /*---------Print Text Function-------------*/
-void printText(String text, float textY, int size){
+void printText(String textt, float texttY, int sizee){
   fill(95,194,226);
-  textSize(size);
+  textSize(sizee);
   textAlign(CENTER);
-  text(text, width/2, textY);
+  text(textt, width/2, texttY);
 }
 
 void removeBullet(Bullet obj) {
