@@ -124,7 +124,7 @@ void drawLife() {
   fill(230, 74, 96);
   text("LIFE:", 36, 455);
   /*---------Draw Ship Life---------*/
-  for(int i=0; i<3; i++){
+  for(float i=0; i<3; i++){
     ellipse(78+i*25, 459, 15, 15);
   }
 }
