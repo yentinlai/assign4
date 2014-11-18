@@ -45,8 +45,7 @@ void draw() {
 
   case GAME_START:
     /*---------Print Text-------------*/
-    printText("GALIXIAN", 240, 60); 
-    printText("Press ENTER to Start", 280, 20);
+    
     /*--------------------------------*/
     break;
 
@@ -116,7 +115,9 @@ void keyPressed() {
 
 /*---------Make Alien Function-------------*/
 void alienMaker() {
-  aList[0]= new Alien(50, 50);
+  for(int i=0; i<53; i++){
+  aList[i]= new Alien(50+(i%12)*40, 50+(i/12)*50);
+  }
 }
 
 void drawLife() {
