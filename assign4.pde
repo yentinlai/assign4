@@ -115,7 +115,7 @@ void keyPressed() {
 
 /*---------Make Alien Function-------------*/
 void alienMaker() {
-  for(int i=0; i<53; i++){
+  for(float i=0; i<53; i++){
   aList[i]= new Alien(50+(i%12)*40, 50+(i/12)*50);
   }
 }
